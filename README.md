@@ -78,6 +78,7 @@ I used [this](https://sourceforge.net/projects/sockettest/) app.
 ## Listen from ESP32
 Specify the port number and press the Start Listening button.   
 ![Image](https://github.com/user-attachments/assets/d789b63d-f59e-463d-b03f-f55461b4ec22)
+![Image](https://github.com/user-attachments/assets/5ce1d2d4-230f-4b57-a09f-8426096dd19b)
 
 ## Send to ESP32
 Specify the IP Address and port number and press the Send button.   
