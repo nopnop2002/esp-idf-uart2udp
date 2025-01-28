@@ -1,0 +1,112 @@
+menu "Application Configuration"
+
+	config GPIO_RANGE_MAX
+		int
+		default 33 if IDF_TARGET_ESP32
+		default 48 if IDF_TARGET_ESP32S3
+		default 18 if IDF_TARGET_ESP32C2
+		default 19 if IDF_TARGET_ESP32C3
+		default 30 if IDF_TARGET_ESP32C6
+		default 27 if IDF_TARGET_ESP32H2
+
+	menu "WiFi Setting"
+
+		config ESP_WIFI_SSID
+			string "WiFi SSID"
+			default "myssid"
+			help
+				SSID (network name) for the example to connect to.
+
+		config ESP_WIFI_PASSWORD
+			string "WiFi Password"
+			default "mypassword"
+			help
+				WiFi password (WPA or WPA2) for the example to use.
+
+		config ESP_MAXIMUM_RETRY
+			int "Maximum retry"
+			default 5
+			help
+				Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+		config MDNS_HOSTNAME
+			string "mDNS hostname"
+			default "esp32"
+			help
+				mDNS hostname
+
+	endmenu
+
+	menu "UART Setting"
+
+		config UART_TX_GPIO
+			int "UART TX GPIO number"
+			range 0 GPIO_RANGE_MAX
+			default 17 if IDF_TARGET_ESP32
+			default  2 if IDF_TARGET_ESP32S3
+			default  1 # C3 and others
+			help
+				GPIO number (IOxx) to UART TX.
+
+		config UART_RX_GPIO
+			int "UART RX GPIO number"
+			range 0 GPIO_RANGE_MAX
+			default 16 if IDF_TARGET_ESP32
+			default  1 if IDF_TARGET_ESP32S3
+			default  0 # C3 and others
+			help
+				GPIO number (IOxx) to UART RX.
+
+		config UART_BAUD_RATE
+			int "UART communication speed"
+			range 1200 115200
+			default 115200
+			help
+				UART communication speed.
+
+	endmenu
+
+	menu "UDP Setting"
+
+		choice UDP_ADDRESS
+			bool "Select UDP Send Address"
+			default UDP_LIMITED_BROADCAST
+			help
+				Select Send Addrss.
+			config UDP_LIMITED_BROADCAST
+				bool "Limited broadcast address"
+			config UDP_DIRECTED_BROADCAST
+				bool "Directed broadcast address"
+			config UDP_MULTICAST
+				bool "Multicast address"
+			config UDP_UNICAST
+				bool "Unicast address"
+		endchoice
+
+		config UDP_MULTICAST_ADDRESS
+			depends on UDP_MULTICAST
+			string "Multicast address"
+			default "239.255.255.255"
+
+		config UDP_UNICAST_ADDRESS
+			depends on UDP_UNICAST
+			string "Unicast address"
+			default "192.168.10.20"
+
+		config UDP_SEND_PORT
+			int "UDP Send Port"
+			range 1024 65535
+			default 8080
+			help
+				Port to send data
+
+		config UDP_LISTEN_PORT
+			int "UDP Listen Port"
+			range 1024 65535
+			default 9090
+			help
+				Port listening for data
+
+	endmenu
+
+endmenu
