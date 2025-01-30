@@ -15,8 +15,6 @@
 #include "freertos/task.h"
 #include "freertos/message_buffer.h"
 #include "driver/uart.h"
-//#include "nvs.h"
-//#include "nvs_flash.h"
 #include "esp_log.h"
 
 extern MessageBufferHandle_t xMessageBufferUdp;
@@ -36,11 +34,13 @@ void uart_tx(void* pvParameters)
 			int txBytes = uart_write_bytes(UART_NUM_1, buffer, received);
 			if (txBytes != received) {
 				ESP_LOGE(pcTaskGetName(NULL), "uart_write_bytes Fail. txBytes=%d received=%d", txBytes, received);
+				break;
 			}
 		}
 	} // end while
 
-	// Never reach here
+	// Stop connection
+	ESP_LOGI(pcTaskGetName(NULL), "Task Delete");
 	vTaskDelete(NULL);
 }
 

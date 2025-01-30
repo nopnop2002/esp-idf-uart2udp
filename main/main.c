@@ -1,4 +1,5 @@
-/*	BSD Socket API Example
+/*
+	UART - UDP bridge Example
 
 	This example code is in the Public Domain (or CC0 licensed, at your option.)
 
@@ -14,7 +15,6 @@
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "freertos/message_buffer.h"
-//#include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_log.h"
@@ -216,8 +216,8 @@ void app_main(void)
 	xTaskCreate(udp_client, "UDP-CLIENT", 1024*3, NULL, 2, NULL);
 
 	// Start UART TX
-	xTaskCreate(uart_tx, "UART-TX", 1024*2, NULL, 2, NULL);
+	xTaskCreate(uart_tx, "UART-TX", 1024*3, NULL, 2, NULL);
 
 	// Start UART RX
-	xTaskCreate(uart_rx, "UART-RX", 1024*2, NULL, 2, NULL);
+	xTaskCreate(uart_rx, "UART-RX", 1024*3, NULL, 2, NULL);
 }
