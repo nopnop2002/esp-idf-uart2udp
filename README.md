@@ -91,3 +91,10 @@ This application works as a UDP-Client and communicates with the UDP-Listener (U
 # Linux Application
 I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't find one.   
 
+# References
+
+https://github.com/nopnop2002/esp-idf-web-serial
+
+https://github.com/nopnop2002/esp-idf-uart2bt
+
+https://github.com/nopnop2002/esp-idf-uart2mqtt
