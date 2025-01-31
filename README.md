@@ -83,7 +83,7 @@ This application works as a UDP-Listener (UDP-Server) and communicates with the 
 ![Image](https://github.com/user-attachments/assets/5ce1d2d4-230f-4b57-a09f-8426096dd19b)
 
 ## Send to ESP32
-Specify the IP Address and port number and press the Send button.   
+Specify the IP Address of ESP32 and port number and press the Send button.   
 You can use an mDNS hostname instead of an IP address.   
 This application works as a UDP-Client and communicates with the UDP-Listener (UDP-Server) of ESP32.   
 ![Image](https://github.com/user-attachments/assets/0d0d742f-d1ce-41e9-a405-50258b702bf9)
