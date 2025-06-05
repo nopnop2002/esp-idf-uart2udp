@@ -98,7 +98,7 @@ This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultan
 	![Image](https://github.com/user-attachments/assets/c0ef903a-d0a8-4b68-b653-349fc01ac183)   
 
 - Send to ESP32   
-	Specify the IP Address and port number and press the Send button.   
+	Specify the IP Address of ESP32 and port number and press the Send button.   
 	This application works as a UDP-Client and communicates with the UDP-Server of ESP32.   
 	![Image](https://github.com/user-attachments/assets/f1d0002b-4f97-4ef4-8bf9-77eec030551e)   
 	Instead of an IP address, you can use an mDNS hostname.   
@@ -111,12 +111,6 @@ This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultan
 udp-client.py is UDP-Client.   
 udp-server.py is UDP-Listener (UDP-Server).   
 
-
-## Send to ESP32
-Specify the IP Address of ESP32 and port number and press the Send button.   
-You can use an mDNS hostname instead of an IP address.   
-This application works as a UDP-Client and communicates with the UDP-Listener (UDP-Server) of ESP32.   
-![Image](https://github.com/user-attachments/assets/0d0d742f-d1ce-41e9-a405-50258b702bf9)
 
 # Linux Application
 I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't find one.   
