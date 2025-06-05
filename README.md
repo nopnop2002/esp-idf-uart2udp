@@ -91,19 +91,19 @@ __You can change it to any pin using menuconfig.__
 I used [this](https://sourceforge.net/projects/sockettest/) app.   
 This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultaneously.   
 
-- Listen from ESP32
+- Listen from ESP32   
 	Specify the port number and press the Start Listening button.   
 	This application works as a UDP-Listener (UDP-Server) and communicates with the UDP-Client of ESP32.   
 	![Image](https://github.com/user-attachments/assets/30bb42e3-6828-4926-bbe5-7f068ef4a052)   
 	![Image](https://github.com/user-attachments/assets/c0ef903a-d0a8-4b68-b653-349fc01ac183)   
 
-- Send to ESP32
+- Send to ESP32   
 	Specify the IP Address and port number and press the Send button.   
 	![Image](https://github.com/user-attachments/assets/f1d0002b-4f97-4ef4-8bf9-77eec030551e)   
 	Instead of an IP address, you can use an mDNS hostname.   
 	![Image](https://github.com/user-attachments/assets/5aafff5a-3bab-481d-b65f-98e3dc6fd25e)   
 
-# Python scriopt   
+# Python script   
 udp-client.py is UDP-Client.   
 udp-server.py is UDP-Listener (UDP-Server).   
 
