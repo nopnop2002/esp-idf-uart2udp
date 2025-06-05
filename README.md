@@ -108,7 +108,9 @@ This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultan
 	This application does not append an LF code to the end of the transmitted data.   
 	Arduino sketch completes the input by timeout.   
 
+
 We can use [this](https://www.hw-group.com/software/hercules-setup-utility) app.   
+This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultaneously.   
 ![Image](https://github.com/user-attachments/assets/62eb14da-fae5-4aa1-90e7-8d4cb81d500b)   
 __Note:__   
 This application does not append an LF code to the end of the transmitted data.   
