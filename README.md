@@ -103,6 +103,9 @@ This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultan
 	![Image](https://github.com/user-attachments/assets/f1d0002b-4f97-4ef4-8bf9-77eec030551e)   
 	Instead of an IP address, you can use an mDNS hostname.   
 	![Image](https://github.com/user-attachments/assets/5aafff5a-3bab-481d-b65f-98e3dc6fd25e)   
+	__Note:__   
+	This application does not append an LF code to the end of the transmitted data.   
+	Arduino sketch completes the input by timing out.   
 
 # Python script   
 udp-client.py is UDP-Client.   
