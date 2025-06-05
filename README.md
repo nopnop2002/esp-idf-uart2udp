@@ -61,6 +61,21 @@ void loop() {
 }
 ```
 
+The string input from UART is terminated with CR(0x0d)+LF(0x0a).   
+```
+I (1189799) UART-RX: 0x3ffc8458   48 65 6c 6c 6f 20 57 6f  72 6c 64 20 31 30 30 31  |Hello World 1001|
+I (1189799) UART-RX: 0x3ffc8468   0d 0a
+```
+
+The string output to UART must be terminated with LF(0x0a).  
+If the string output to the UART is not terminated with LF(0x0a), the Arduino will complete the input with a timeout.   
+The string output to the UART is echoed back.   
+```
+I (1285439) UART-TX: 0x3ffc72f8   61 62 63 64 65 66 67 0a                           |abcdefg.|
+I (1285459) UART-RX: 0x3ffc8458   61 62 63 64 65 66 67 0d  0a                       |abcdefg..|
+```
+
+
 ## Connect ESP32 and AtMega328 using wire cable   
 
 |AtMega328||ESP32|ESP32S3|ESP32C2/C3/C6|
@@ -76,11 +91,22 @@ __You can change it to any pin using menuconfig.__
 I used [this](https://sourceforge.net/projects/sockettest/) app.   
 This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultaneously.   
 
-## Listen from ESP32
-Specify the port number and press the Start Listening button.   
-This application works as a UDP-Listener (UDP-Server) and communicates with the UDP-Client of ESP32.   
-![Image](https://github.com/user-attachments/assets/d789b63d-f59e-463d-b03f-f55461b4ec22)
-![Image](https://github.com/user-attachments/assets/5ce1d2d4-230f-4b57-a09f-8426096dd19b)
+- Listen from ESP32
+	Specify the port number and press the Start Listening button.   
+	This application works as a UDP-Listener (UDP-Server) and communicates with the UDP-Client of ESP32.   
+	![Image](https://github.com/user-attachments/assets/30bb42e3-6828-4926-bbe5-7f068ef4a052)   
+	![Image](https://github.com/user-attachments/assets/c0ef903a-d0a8-4b68-b653-349fc01ac183)   
+
+- Send to ESP32
+	Specify the IP Address and port number and press the Send button.   
+	![Image](https://github.com/user-attachments/assets/f1d0002b-4f97-4ef4-8bf9-77eec030551e)   
+	Instead of an IP address, you can use an mDNS hostname.   
+	![Image](https://github.com/user-attachments/assets/5aafff5a-3bab-481d-b65f-98e3dc6fd25e)   
+
+# Python scriopt   
+udp-client.py is UDP-Client.   
+udp-server.py is UDP-Listener (UDP-Server).   
+
 
 ## Send to ESP32
 Specify the IP Address of ESP32 and port number and press the Send button.   

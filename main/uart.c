@@ -30,7 +30,8 @@ void uart_tx(void* pvParameters)
 		size_t received = xMessageBufferReceive(xMessageBufferUart, buffer, sizeof(buffer), portMAX_DELAY);
 		ESP_LOGI(pcTaskGetName(NULL), "xMessageBufferReceive received=%d", received);
 		if (received > 0) {
-			ESP_LOGI(pcTaskGetName(NULL), "xMessageBufferReceive buffer=[%.*s]",received, buffer);
+			ESP_LOGD(pcTaskGetName(NULL), "xMessageBufferReceive buffer=[%.*s]",received, buffer);
+			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetName(NULL), buffer, received, ESP_LOG_INFO);
 			int txBytes = uart_write_bytes(UART_NUM_1, buffer, received);
 			if (txBytes != received) {
 				ESP_LOGE(pcTaskGetName(NULL), "uart_write_bytes Fail. txBytes=%d received=%d", txBytes, received);
@@ -54,7 +55,8 @@ void uart_rx(void* pvParameters)
 		// There is some rxBuf in rx buffer
 		if (received > 0) {
 			ESP_LOGI(pcTaskGetName(NULL), "received=%d", received);
-			ESP_LOGI(pcTaskGetName(NULL), "buffer=[%.*s]",received, buffer);
+			ESP_LOGD(pcTaskGetName(NULL), "buffer=[%.*s]",received, buffer);
+			ESP_LOG_BUFFER_HEXDUMP(pcTaskGetName(NULL), buffer, received, ESP_LOG_INFO);
 			size_t sended = xMessageBufferSend(xMessageBufferUdp, buffer, received, 100);
 			if (sended != received) {
 				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail received=%d sended=%d", received, sended);
