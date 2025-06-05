@@ -22,8 +22,8 @@
 #include "driver/uart.h"
 #include "mdns.h"
 
-MessageBufferHandle_t xMessageBufferUdp;
-MessageBufferHandle_t xMessageBufferUart;
+MessageBufferHandle_t xMessageBufferRx;
+MessageBufferHandle_t xMessageBufferTx;
 
 // The total number of bytes (not messages) the message buffer will be able to hold at any one time.
 size_t xBufferSizeBytes = 1024;
@@ -204,10 +204,10 @@ void app_main(void)
 	initialise_mdns();
 
 	// Create MessageBuffer
-	xMessageBufferUdp = xMessageBufferCreate(xBufferSizeBytes);
-	configASSERT( xMessageBufferUdp );
-	xMessageBufferUart = xMessageBufferCreate(xBufferSizeBytes);
-	configASSERT( xMessageBufferUart );
+	xMessageBufferRx = xMessageBufferCreate(xBufferSizeBytes);
+	configASSERT( xMessageBufferRx );
+	xMessageBufferTx = xMessageBufferCreate(xBufferSizeBytes);
+	configASSERT( xMessageBufferTx );
 
 	// Start UDP Listner
 	xTaskCreate(udp_listner, "UDP-LISTNER", 1024*3, NULL, 2, NULL);

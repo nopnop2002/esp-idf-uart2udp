@@ -16,8 +16,7 @@
 #include "esp_netif.h" // IP2STR
 #include "lwip/sockets.h"
 
-extern MessageBufferHandle_t xMessageBufferUdp;
-extern MessageBufferHandle_t xMessageBufferUart;
+extern MessageBufferHandle_t xMessageBufferTx;
 extern size_t xItemSize;
 
 static const char *TAG = "LISTENER";
@@ -65,7 +64,7 @@ void udp_listner(void *pvParameters) {
 			char senderstr[16];
 			inet_ntop(AF_INET, &senderInfo.sin_addr, senderstr, sizeof(senderstr));
 			ESP_LOGI(TAG, "recvfrom : %s, port=%d", senderstr, ntohs(senderInfo.sin_port));
-			size_t sended = xMessageBufferSend(xMessageBufferUart, buffer, received, 100);
+			size_t sended = xMessageBufferSend(xMessageBufferTx, buffer, received, 100);
 			if (sended != received) {
 				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail received=%d sended=%d", received, sended);
 				break;

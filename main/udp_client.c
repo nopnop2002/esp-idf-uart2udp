@@ -16,7 +16,7 @@
 #include "esp_netif.h" // IP2STR
 #include "lwip/sockets.h"
 
-extern MessageBufferHandle_t xMessageBufferUdp;
+extern MessageBufferHandle_t xMessageBufferRx;
 extern size_t xItemSize;
 
 static const char *TAG = "CLIENT";
@@ -56,7 +56,7 @@ void udp_client(void *pvParameters) {
 
 	char buffer[xItemSize];
 	while(1) {
-		size_t received = xMessageBufferReceive(xMessageBufferUdp, buffer, sizeof(buffer), portMAX_DELAY);
+		size_t received = xMessageBufferReceive(xMessageBufferRx, buffer, sizeof(buffer), portMAX_DELAY);
 		ESP_LOGI(TAG, "xMessageBufferReceive received=%d", received);
 		if (received > 0) {
 			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",received, buffer);
