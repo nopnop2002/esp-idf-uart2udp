@@ -52,9 +52,7 @@ There are the following four methods for specifying the UDP Address.
  Both the sender and receiver must specify the Unicast address.
 
 
-# How to use   
-
-## Write this sketch on Arduino Uno.   
+# Write this sketch on Arduino Uno.   
 You can use any AtMega microcontroller.   
 
 ```
@@ -98,7 +96,8 @@ I (1285459) UART-RX: 0x3ffc8458   61 62 63 64 65 66 67 0d  0a                   
 ```
 
 
-## Connect ESP32 and AtMega328 using wire cable   
+# Wireing   
+Connect ESP32 and AtMega328 using wire cable   
 
 |AtMega328||ESP32|ESP32S2/S3|ESP32C2/C3/C6|
 |:-:|:-:|:-:|:-:|:-:|
