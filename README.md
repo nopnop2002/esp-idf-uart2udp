@@ -121,7 +121,13 @@ udp-server.py is UDP-Listener (UDP-Server).
 I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't find one.   
 
 # Using linux rsyslogd as logger   
-We can forward logging to rsyslogd on Linux machine.   
+We can forward the UART input to rsyslogd on your Linux machine.
+```
++-------------+          +-------------+         +-------------+ 
+| Arduino Uno |--(UART)->|    ESP32    |--(UDP)->|  rsyslogd   |
++-------------+          +-------------+         +-------------+ 
+```
+
 Configure with port number = 514.   
 ![Image](https://github.com/user-attachments/assets/bf4cadb5-40d8-49ea-a1b9-dee23fa70c63)
 
@@ -170,7 +176,7 @@ To                         Action      From
 22/tcp (v6)                ALLOW       Anywhere (v6)
 ```
 
-Logging from esp-idf goes to /var/log/remote.   
+UART input goes to /var/log/remote.   
 ```
 $ tail -f /var/log/remote
 Jun  6 11:05:04 Hello World 6721000
