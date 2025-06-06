@@ -64,6 +64,10 @@ void udp_listner(void *pvParameters) {
 			char senderstr[16];
 			inet_ntop(AF_INET, &senderInfo.sin_addr, senderstr, sizeof(senderstr));
 			ESP_LOGI(TAG, "recvfrom : %s, port=%d", senderstr, ntohs(senderInfo.sin_port));
+			if (buffer[received-1] != 0x0a) {
+				buffer[received] = 0x0a;
+				received++;
+			}
 			size_t sended = xMessageBufferSend(xMessageBufferTx, buffer, received, 100);
 			if (sended != received) {
 				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail received=%d sended=%d", received, sended);

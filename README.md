@@ -70,6 +70,7 @@ I (1189799) UART-RX: 0x3ffc8468   0d 0a
 The string output to UART must be terminated with LF(0x0a).  
 If the string output to the UART is not terminated with LF(0x0a), the Arduino will complete the input with a timeout.   
 The default input timeout is 1000 milliseconds.   
+If the output string does not have a terminating LF, this project will add one to the end and send it.   
 The string output to the UART is echoed back with CR+LF as the terminator.   
 ```
 I (1285439) UART-TX: 0x3ffc72f8   61 62 63 64 65 66 67 0a                           |abcdefg.|
@@ -104,17 +105,11 @@ This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultan
 	![Image](https://github.com/user-attachments/assets/f1d0002b-4f97-4ef4-8bf9-77eec030551e)   
 	Instead of an IP address, you can use an mDNS hostname.   
 	![Image](https://github.com/user-attachments/assets/5aafff5a-3bab-481d-b65f-98e3dc6fd25e)   
-	__Note:__   
-	This application does not append an LF code to the end of the transmitted data.   
-	Arduino sketch completes the input by timeout.   
 
 
 We can use [this](https://www.hw-group.com/software/hercules-setup-utility) app.   
 This application runs both a UDP-Listener (UDP-Server) and a UDP-Client simultaneously.   
 ![Image](https://github.com/user-attachments/assets/62eb14da-fae5-4aa1-90e7-8d4cb81d500b)   
-__Note:__   
-This application does not append an LF code to the end of the transmitted data.   
-Arduino sketch completes the input by timeout.   
 
 
 # Python script   

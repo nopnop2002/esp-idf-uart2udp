@@ -22,13 +22,15 @@
 #include "driver/uart.h"
 #include "mdns.h"
 
+static const char *TAG = "MAIN";
+
 MessageBufferHandle_t xMessageBufferRx;
 MessageBufferHandle_t xMessageBufferTx;
 
 // The total number of bytes (not messages) the message buffer will be able to hold at any one time.
 size_t xBufferSizeBytes = 1024;
 // The size, in bytes, required to hold each item in the message,
-size_t xItemSize = 64;
+size_t xItemSize = 256;
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t s_wifi_event_group;
@@ -38,8 +40,6 @@ static EventGroupHandle_t s_wifi_event_group;
  * - we failed to connect after the maximum amount of retries */
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT BIT1
-
-static const char *TAG = "MAIN";
 
 static int s_retry_num = 0;
 
@@ -179,6 +179,7 @@ void initialise_mdns(void)
 	ESP_ERROR_CHECK( mdns_instance_name_set("ESP32 with mDNS") );
 #endif
 }
+
 void udp_client(void *pvParameters);
 void udp_listner(void *pvParameters);
 void uart_tx(void *pvParameters);

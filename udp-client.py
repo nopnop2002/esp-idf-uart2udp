@@ -52,7 +52,6 @@ if __name__=='__main__':
 		local_time = time.localtime(t)
 		asc_time = time.asctime(local_time)
 		print("asc_time={}".format(asc_time))
-		asc_time = asc_time + "\n"
 		bytes_time = bytes(asc_time, 'utf-8')
 		send_len = client.sendto(bytes_time, serv_address)
 		#print('closing socket')
