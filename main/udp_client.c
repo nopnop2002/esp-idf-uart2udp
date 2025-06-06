@@ -1,10 +1,10 @@
-/*  BSD Socket UDP Client
+/*	BSD Socket UDP Client
 
-    This example code is in the Public Domain (or CC0 licensed, at your option.)
+	This example code is in the Public Domain (or CC0 licensed, at your option.)
 
-    Unless required by applicable law or agreed to in writing, this
-    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-    CONDITIONS OF ANY KIND, either express or implied.
+	Unless required by applicable law or agreed to in writing, this
+	software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+	CONDITIONS OF ANY KIND, either express or implied.
 */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@ extern size_t xItemSize;
 static const char *TAG = "CLIENT";
 
 void udp_client(void *pvParameters) {
-    ESP_LOGI(TAG, "Start CONFIG_UDP_SEND_PORT=%d", CONFIG_UDP_SEND_PORT);
+	ESP_LOGI(TAG, "Start CONFIG_UDP_SEND_PORT=%d", CONFIG_UDP_SEND_PORT);
 
 	/* Get the local IP address */
 	esp_netif_ip_info_t ip_info;
@@ -59,9 +59,23 @@ void udp_client(void *pvParameters) {
 		size_t received = xMessageBufferReceive(xMessageBufferRx, buffer, sizeof(buffer), portMAX_DELAY);
 		ESP_LOGI(TAG, "xMessageBufferReceive received=%d", received);
 		if (received > 0) {
-			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",received, buffer);
-			ret = sendto(sock, buffer, received, 0, (struct sockaddr *)&addr, sizeof(addr));
-			LWIP_ASSERT("ret == received", ret == received);
+			int sending = 0;
+			// Port number 514 is a well-known port commonly used for syslog (UDP).
+			if (CONFIG_UDP_SEND_PORT == 514) {
+				for (int i=0;i<received;i++) {
+					if (buffer[i] == 0x0d) continue;
+					if (buffer[i] == 0x0a) continue;
+					sending++;
+				}
+			} else {
+				sending = received;
+			}
+			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",sending, buffer);
+			ret = sendto(sock, buffer, sending, 0, (struct sockaddr *)&addr, sizeof(addr));
+			if (ret != sending) {
+				ESP_LOGE(TAG, "sendto fail. ret=%d received=%d", ret, received);
+				break;
+			}
 		} else {
 			ESP_LOGE(TAG, "xMessageBufferReceive fail");
 			break;

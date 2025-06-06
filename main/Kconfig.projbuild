@@ -95,14 +95,12 @@ menu "Application Configuration"
 
 		config UDP_SEND_PORT
 			int "UDP Send Port"
-			range 1024 65535
 			default 8080
 			help
 				Port to send data
 
 		config UDP_LISTEN_PORT
 			int "UDP Listen Port"
-			range 1024 65535
 			default 9090
 			help
 				Port listening for data
