@@ -33,6 +33,25 @@ Set the information of UART Connection.
 Set the information of UDP Connection.   
 ![Image](https://github.com/user-attachments/assets/10be168a-0604-4177-b0c8-4a7967beaccd)
 
+There are the following four methods for specifying the UDP Address.
+- Limited broadcast address   
+ The address represented by 255.255.255.255, or \<broadcast\>, cannot cross the router.   
+ Both the sender and receiver must specify a Limited broadcast address.   
+
+- Directed broadcast address   
+ It is possible to cross the router with an address that represents only the last octet as 255, such as 192.168.10.255.   
+ Both the sender and receiver must specify the Directed broadcast address.   
+ __Note that it is possible to pass through the router.__   
+
+- Multicast address   
+ Data is sent to all PCs belonging to a specific group using a special address (224.0.0.0 to 239.255.255.255) called a multicast address.   
+ I've never used it, so I don't know anything more.
+
+- Unicast address   
+ It is possible to cross the router with an address that specifies all octets, such as 192.168.10.41.   
+ Both the sender and receiver must specify the Unicast address.
+
+
 # How to use   
 
 ## Write this sketch on Arduino Uno.   
