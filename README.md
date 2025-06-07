@@ -225,7 +225,7 @@ $ ls -l /var/log/remote*
 
 # References
 
-https://github.com/nopnop2002/esp-idf-web-serial
+https://github.com/nopnop2002/esp-idf-uart2web
 
 https://github.com/nopnop2002/esp-idf-uart2bt
 
