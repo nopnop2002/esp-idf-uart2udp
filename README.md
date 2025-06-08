@@ -139,6 +139,12 @@ udp-server.py is UDP-Listener (UDP-Server).
 # Linux Application
 I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't find one.   
 
+
+# Android Application
+I used [this](https://play.google.com/store/apps/details?id=com.jca.udpsendreceive) app.   
+![Image](https://github.com/user-attachments/assets/17d60387-0a17-49a5-af3d-7e13879495b3)
+
+
 # Using linux rsyslogd as logger   
 We can forward the UART input to rsyslogd on your Linux machine.
 ```
